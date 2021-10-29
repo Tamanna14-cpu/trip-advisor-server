@@ -86,7 +86,7 @@ async function run() {
         });
 
 
-        // get all order by email query
+        // get all order by email query only for me
         app.get("/myOrders/:email", (req, res) => {
             console.log(req.params);
             ordersCollection
@@ -95,6 +95,13 @@ async function run() {
                     res.send(results);
                 });
         });
+
+        // get all orders for all public
+        app.get('/manageOrders', async (req, res) => {
+            const cursor = ordersCollection.find({});
+            const orders = await cursor.toArray();
+            res.send(orders);
+        })
 
 
         // // DELETE API
