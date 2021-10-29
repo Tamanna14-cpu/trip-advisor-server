@@ -32,9 +32,10 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 async function run() {
     try {
         await client.connect();
-        // console.log("connected");
         const database = client.db("tripAdvisor");
-        const servicesCollection = database.collection("services");
+        const servicesCollection = database.collection("allService");
+
+        console.log("mongo connect succesfully");
 
 
         // GET API
@@ -57,13 +58,27 @@ async function run() {
 
 
         // // POST API
-        app.post('/services', async (req, res) => {
-            const service = req.body;
-            console.log("hit the post api");
-            const result = await servicesCollection.insertOne(service);
+        // app.post('/services', async (req, res) => {
+        //     const service = req.body;
+        //     console.log("hit the post api");
+        //     const result = await servicesCollection.insertOne(service);
+        //     console.log(result);
+        //     res.json(result)
+        // })
+
+
+        // add package POST / INSERT API
+        app.post('/addService', async (req, res) => {
+            const packageDetails = req.body;
+            console.log('hit the post api', packageDetails);
+
+            const result = await servicesCollection.insertOne(packageDetails);
             console.log(result);
-            res.json(result)
+
+            res.json(result);
+
         })
+
 
 
         // // DELETE API
