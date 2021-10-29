@@ -79,13 +79,22 @@ async function run() {
 
 
         //add order in database
-
         app.post("/manageOrders", (req, res) => {
             ordersCollection.insertOne(req.body).then((result) => {
                 res.send(result);
             });
         });
 
+
+        // get all order by email query
+        app.get("/myOrders/:email", (req, res) => {
+            console.log(req.params);
+            ordersCollection
+                .find({ email: req.params.email })
+                .toArray((err, results) => {
+                    res.send(results);
+                });
+        });
 
 
         // // DELETE API
