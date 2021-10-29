@@ -33,7 +33,8 @@ async function run() {
     try {
         await client.connect();
         const database = client.db("tripAdvisor");
-        const servicesCollection = database.collection("allService");
+        const servicesCollection = database.collection("services");
+        const addedCollection = database.collection("allService")
 
         console.log("mongo connect succesfully");
 
@@ -72,7 +73,7 @@ async function run() {
             const packageDetails = req.body;
             console.log('hit the post api', packageDetails);
 
-            const result = await servicesCollection.insertOne(packageDetails);
+            const result = await addedCollection.insertOne(packageDetails);
             console.log(result);
 
             res.json(result);
