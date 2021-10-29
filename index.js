@@ -35,8 +35,9 @@ async function run() {
         const database = client.db("tripAdvisor");
         const servicesCollection = database.collection("services");
         const addedCollection = database.collection("allService")
+        const ordersCollection = database.collection("orders")
 
-        console.log("mongo connect succesfully");
+        // console.log("mongo connect succesfully");
 
 
         // GET API
@@ -75,6 +76,15 @@ async function run() {
             res.json(result);
 
         })
+
+
+        //add order in database
+
+        app.post("/manageOrders", (req, res) => {
+            ordersCollection.insertOne(req.body).then((result) => {
+                res.send(result);
+            });
+        });
 
 
 
