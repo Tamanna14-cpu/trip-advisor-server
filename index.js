@@ -37,12 +37,12 @@ async function run() {
         const servicesCollection = database.collection("services");
 
 
-        // // GET API
-        // app.get('/services', async (req, res) => {
-        //     const cursor = servicesCollection.find({});
-        //     const services = await cursor.toArray();
-        //     res.send(services)
-        // })
+        // GET API
+        app.get('/services', async (req, res) => {
+            const cursor = servicesCollection.find({});
+            const services = await cursor.toArray();
+            res.send(services)
+        })
 
 
         // // GET SINGLE SERVICE
