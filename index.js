@@ -47,6 +47,14 @@ async function run() {
         })
 
 
+        // GET INSERTED DATA
+        app.get('/addService', async (req, res) => {
+            const cursor = addedCollection.find({});
+            const services = await cursor.toArray();
+            res.send(services)
+        })
+
+
         // // GET SINGLE SERVICE
         // app.get('/services/:id', async (req, res) => {
         //     const id = req.params.id;
@@ -58,24 +66,12 @@ async function run() {
 
 
 
-        // // POST API
-        // app.post('/services', async (req, res) => {
-        //     const service = req.body;
-        //     console.log("hit the post api");
-        //     const result = await servicesCollection.insertOne(service);
-        //     console.log(result);
-        //     res.json(result)
-        // })
-
-
-        // add package POST / INSERT API
+        //  POST / INSERT API
         app.post('/addService', async (req, res) => {
             const packageDetails = req.body;
             console.log('hit the post api', packageDetails);
-
             const result = await addedCollection.insertOne(packageDetails);
             console.log(result);
-
             res.json(result);
 
         })
