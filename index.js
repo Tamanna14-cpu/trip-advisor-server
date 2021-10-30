@@ -113,6 +113,24 @@ async function run() {
             res.json(result);
         })
 
+
+        // UPDATE API
+        // app.put("/update/:id", async (req, res) => {
+        //     const id = req.params.id;
+        //     const updatedName = req.body;
+        //     const filter = { _id: ObjectId(id) };
+
+        //     ordersCollection
+        //         .updateOne(filter, {
+        //             $set: {
+        //                 status: updatedName.status,
+        //             },
+        //         })
+        //         .then((result) => {
+        //             res.send(result);
+        //         });
+        // });
+
     } finally {
         //   await client.close();
     }
