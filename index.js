@@ -34,8 +34,9 @@ async function run() {
         await client.connect();
         const database = client.db("tripAdvisor");
         const servicesCollection = database.collection("services");
-        const addedCollection = database.collection("allService")
-        const ordersCollection = database.collection("orders")
+        const addedCollection = database.collection("allService");
+        const ordersCollection = database.collection("orders");
+        // const orderCollection = database.collection("allOrder");
 
         // console.log("mongo connect succesfully");
 
@@ -79,10 +80,10 @@ async function run() {
 
 
         //add order in database
-        app.post("/manageOrders", (req, res) => {
-            ordersCollection.insertOne(req.body).then((result) => {
-                res.send(result);
-            });
+        app.post("/manageOrders", async (req, res) => {
+            const orderDetails = req.body;
+            const result = await ordersCollection.insertOne(orderDetails);
+            res.json(result);
         });
 
 
@@ -95,6 +96,17 @@ async function run() {
                     res.send(results);
                 });
         });
+
+
+        // get all order by email query only for me
+        // app.get("/addOrder", (req, res) => {
+
+        //     orderCollection.find({ email: req.params.email })
+        //         .toArray((err, documents) => {
+        //             res.send(documents);
+        //         });
+        // });
+
 
         // get all orders for all public
         app.get('/manageOrders', async (req, res) => {
