@@ -105,8 +105,8 @@ async function run() {
 
 
         // // DELETE API
-        app.delete('/myOrders/:email', async (req, res) => {
-            const id = req.params.email;
+        app.delete('/deleteProduct/:id', async (req, res) => {
+            const id = req.params.id;
             const query = { _id: ObjectId(id) };
             const result = await ordersCollection.deleteOne(query);
             console.log('deleting user id', result);
