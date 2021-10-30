@@ -57,13 +57,13 @@ async function run() {
 
 
         // // GET SINGLE SERVICE
-        // app.get('/services/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const query = { _id: ObjectId(id) };
-        //     const service = await servicesCollection.findOne(query);
-        //     console.log('load user with id:', id);
-        //     res.json(service)
-        // })
+        app.get('/services/:id', async (req, res) => {
+            const id = req.params.id;
+            const query = { _id: ObjectId(id) };
+            const service = await servicesCollection.findOne(query);
+            console.log('load user with id:', id);
+            res.json(service)
+        })
 
 
 
