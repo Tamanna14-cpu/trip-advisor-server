@@ -62,7 +62,7 @@ async function run() {
             const query = { _id: ObjectId(id) };
             const service = await servicesCollection.findOne(query);
             console.log('load user with id:', id);
-            res.json(service)
+            res.send(service)
         })
 
 
