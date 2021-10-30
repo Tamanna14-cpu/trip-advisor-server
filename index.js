@@ -105,13 +105,13 @@ async function run() {
 
 
         // // DELETE API
-        // app.delete('/services/:id', async (req, res) => {
-        //     const id = req.params.id;
-        //     const query = { _id: ObjectId(id) };
-        //     const result = await servicesCollection.deleteOne(query);
-        //     console.log('deleting user id', result);
-        //     res.json(result);
-        // })
+        app.delete('/myOrders/:email', async (req, res) => {
+            const id = req.params.email;
+            const query = { _id: ObjectId(id) };
+            const result = await ordersCollection.deleteOne(query);
+            console.log('deleting user id', result);
+            res.json(result);
+        })
 
     } finally {
         //   await client.close();
