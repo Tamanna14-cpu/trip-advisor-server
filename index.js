@@ -117,21 +117,20 @@ async function run() {
 
 
         // UPDATE API
-        // app.put("/update/:id", async (req, res) => {
-        //     const id = req.params.id;
-        //     const updatedName = req.body;
-        //     const filter = { _id: ObjectId(id) };
+        app.put("/manageOrders/:id", async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: ObjectId(id) };
 
-        //     ordersCollection
-        //         .updateOne(filter, {
-        //             $set: {
-        //                 status: updatedName.status,
-        //             },
-        //         })
-        //         .then((result) => {
-        //             res.send(result);
-        //         });
-        // });
+            ordersCollection
+                .updateOne(filter, {
+                    $set: {
+                        status: "Approved",
+                    },
+                })
+                .then((result) => {
+                    res.send(result);
+                });
+        });
 
     } finally {
         //   await client.close();
